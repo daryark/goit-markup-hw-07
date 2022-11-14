@@ -29,7 +29,6 @@ body {
 .section {
 	padding-top: 94px;
 	padding-bottom: 94px;
-	outline: 1px solid rgb(221, 112, 221);
 }
 p,
 h1,
@@ -65,13 +64,12 @@ address {
 	font-style: normal;
 }
 input,
-label {
+label:not([type="checkbox"]) {
 	display: block;
 }
 .uppercase {
 	text-transform: uppercase;
 }
-/* i: should I leave this style? */
 .flex-center {
 	display: flex;
 	justify-content: center;
@@ -162,7 +160,8 @@ input[type="radio"].visually-hidden {
 .nav__link--active::after {
 	transform: scaleX(1);
 }
-.nav__link--active:hover::after {
+.nav__link--active:hover::after,
+.nav__link--active:focus::after {
 	animation: 250ms scale 1 normal cubic-bezier(0.4, 0, 0.2, 1);
 }
 @keyframes scale {
@@ -235,7 +234,6 @@ input[type="radio"].visually-hidden {
 	color: var(--inverse-color);
 }
 .primary-btn {
-	display: block;
 	margin: 0 auto;
 	padding: 10px 32px;
 	min-width: 200px;
@@ -269,8 +267,6 @@ input[type="radio"].visually-hidden {
 	margin-bottom: 30px;
 
 	background-color: var(--grey-bg);
-}
-.features__icon {
 }
 .features__title {
 	margin-bottom: 10px;
@@ -345,8 +341,6 @@ input[type="radio"].visually-hidden {
 	border-radius: 0 0 4px 4px;
 	box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%);
 }
-.team-cards__img {
-}
 .team-cards__content {
 	padding: 30px 0;
 }
@@ -387,12 +381,15 @@ input[type="radio"].visually-hidden {
 	border-radius: 50%;
 	transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+.socials__link:hover,
+.socials__link:focus {
+	background-color: var(--button-hover);
+	color: var(--inverse-color);
+}
 /* C: CLIENTS */
 .client-set {
 	display: flex;
 	gap: 30px;
-}
-.client-set__item {
 }
 .client-set__link {
 	height: 92px;
@@ -402,7 +399,10 @@ input[type="radio"].visually-hidden {
 	border: 1px solid var(--icon-color);
 	transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.flex-center {
+.client-set__link:hover,
+.client-set__link:focus {
+	border: 1px solid var(--accent-color);
+	color: var(--accent-color);
 }
 /* C: FOOTER */
 .footer {
@@ -417,7 +417,7 @@ input[type="radio"].visually-hidden {
 	gap: 70px;
 }
 .footer__wrapper {
-	outline: 1px solid orange;
+	/* outline: 1px solid orange; */
 	display: block;
 }
 .footer__logo {
@@ -429,8 +429,6 @@ input[type="radio"].visually-hidden {
 .address {
 	display: grid;
 	gap: 9px;
-}
-.adress__item {
 }
 .address__link {
 	display: block;
@@ -479,5 +477,178 @@ input[type="radio"].visually-hidden {
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
 	transition: outline 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+.mail-form__primaty-btn {
+	padding: 10px 28px;
+}
 .primary-btn__icon--append {
+	margin-left: 10px;
+}
+/* C: MODAL */
+.backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+
+	background-color: rgba(0, 0, 0, 0.2);
+	opacity: 1;
+	transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.is-hidden {
+	opacity: 0;
+	pointer-events: none;
+}
+.is-hidden .modal {
+	transform: translate(-50%, -50%) scale(1.1);
+}
+.modal {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(1);
+	padding: 40px;
+
+	min-width: 528px;
+	min-height: 581px;
+
+	background-color: var(--light-bg);
+	box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%);
+	border-radius: 4px;
+	transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-close {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+
+	width: 30px;
+	height: 30px;
+
+	background-color: var(--light-bg);
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 50%;
+}
+.btn-close:hover,
+.btn-close:focus {
+	fill: var(--accent-color);
+}
+.modal-form {
+	width: 448px;
+	margin: 0 auto;
+	color: var(--main-color);
+}
+.modal-form__title {
+	margin-bottom: 12px;
+	text-align: center;
+
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 1.15;
+	letter-spacing: var(--letter-spacing);
+}
+.form-field {
+	margin-bottom: 10px;
+}
+.input-wrap {
+	position: relative;
+}
+.form-field__label {
+	margin-bottom: 4px;
+
+	font-size: 12px;
+	line-height: 1.17;
+	letter-spacing: 0.01em;
+	color: var(--second-color);
+	transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.form-field__input {
+	padding-left: 42px;
+
+	width: 100%;
+	height: 40px;
+
+	border: 1px solid rgba(33, 33, 33, 0.2);
+	border-radius: 4px;
+	outline: 1px solid transparent;
+	outline-offset: -1px;
+	transition: outline 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.form-field__input:focus {
+	outline: 1px solid var(--accent-color);
+}
+.form-field__icon {
+	position: absolute;
+	bottom: 11px;
+	left: 12px;
+
+	transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-field:focus-within .form-field__icon {
+	fill: var(--accent-color);
+}
+.form-field:focus .form-field__input,
+.form-field:focus-within .form-field__label,
+.form-field__input--large:focus::placeholder {
+	color: var(--accent-color);
+}
+.form-field__input--large {
+	padding: 12px 16px;
+	height: 120px;
+	resize: none;
+
+	color: var(--second-color);
+}
+.form-field__input--large::placeholder {
+	font-family: inherit;
+	font-size: 12px;
+	line-height: 1.17;
+	letter-spacing: 0.01em;
+
+	transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.form-field__comment {
+	margin-bottom: 20px;
+}
+.checkbox {
+	margin-bottom: 30px;
+}
+.checkbox__label {
+	font-size: 14px;
+	line-height: 1.71;
+
+	letter-spacing: var(--letter-spacing);
+}
+.checkbox__input {
+	margin-right: 7px;
+
+	width: 16px;
+	height: 15px;
+	border: 2px solid var(--main-color);
+	border-radius: 2px;
+
+	background-color: var(--light-bg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 0;
+	transition: background-size 100ms cubic-bezier(0.4, 0, 0.2, 1), background-color 100ms cubic-bezier(0.4, 0, 0.2, 1),
+		border 100ms cubic-bezier(0.4, 0, 0.2, 1);
+
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' id='checked' viewBox='0 0 13 10'%3E%3Cpath d='M1.95703 4.75166L1.88825 4.68604L1.81923 4.75141L0.93123 5.59258L0.854858 5.66492L0.930974 5.73753L4.42671 9.07236L4.49574 9.1382L4.56476 9.07236L12.069 1.91352L12.1449 1.84116L12.069 1.76881L11.1873 0.927644L11.1183 0.861826L11.0493 0.927611L4.49577 7.17353L1.95703 4.75166Z' fill='%23fff'%3E%3C/path%3E%3C/svg%3E");
+
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+.checkbox__input:checked {
+	background-color: var(--accent-color);
+	background-size: 100%;
+	border: 1px solid transparent;
+}
+.checkbox__link {
+	margin-left: 2px;
+	color: var(--accent-color);
+	text-decoration-line: underline;
+	text-underline-position: under;
 }
