@@ -1,0 +1,18 @@
+%flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+%uppercase {
+	text-transform: uppercase;
+}
+%grid {
+	display: flex;
+	gap: 30px;
+}
+%grid-four__item {
+	width: calc((100% - 90px) / 4);
+}
+%grid-three__item {
+	width: calc((100% - 60px) / 3);
+}

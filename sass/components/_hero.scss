@@ -1,0 +1,27 @@
+.hero-section {
+	padding-top: 200px;
+	padding-bottom: 200px;
+	margin: 0 auto;
+
+	max-width: 1600px;
+
+	background-image: linear-gradient(180deg, rgba(47, 48, 58, 0.4) 0%, rgba(47, 48, 58, 0.4) 100%), url(../images/hero-bg-img.jpg);
+	background-color: var(--dark-bg);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.hero-title {
+	margin: 0 auto;
+	margin-bottom: 16px;
+	max-width: 696px;
+	text-align: center;
+
+	font-weight: 900;
+	font-size: 44px;
+	letter-spacing: var(--big-letter-spacing);
+	line-height: 1.36;
+	@extend %uppercase;
+
+	color: var(--inverse-color);
+}
